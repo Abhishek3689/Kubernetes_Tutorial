@@ -1,0 +1,13 @@
+# Ignore everything outside Streamlit
+../fastapi_app/
+../.venv/
+../__pycache__/
+../.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Git & logs
+.git/
+*.log

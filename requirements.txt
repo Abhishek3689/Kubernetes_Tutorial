@@ -1,0 +1,7 @@
+fastapi
+pandas
+scikit-learn
+streamlit
+seaborn 
+joblib  
+requests

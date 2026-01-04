@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  fastapi:
+    image: abhishek8988/iris-predict-fastapiapp:1.0
+    ports:
+      - "8000:8000"
+
+  streamlit:
+    image: abhishek8988/iris-predict-streamlitapp:1.0 
+    ports:
+      - "8501:8501"
+    depends_on:
+      - fastapi
