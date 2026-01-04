@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: fastapi-deployment
+  labels:
+    name: fastapi-deployment
+    app: iris-demo-app
+spec:
+  replicas: 1
+
+  template:
+    metadata:
+      name: fastapi-pod
+      labels:
+        name: fastapi-pod
+        app: iris-demo-app
+
+    spec:
+      containers:
+        - name: fastapi-pod
+          image: abhishek8988/iris-predict-fastapiapp:1.0
+          ports: 
+          - containerPort: 8000
+  selector:
+    matchLabels:
+      name: fastapi-pod
+      app: iris-demo-app

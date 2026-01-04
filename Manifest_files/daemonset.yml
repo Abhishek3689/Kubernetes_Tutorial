@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-demo
+spec:
+  template:
+    metadata:
+      name: simple-pod
+      labels:
+        name: daemon-pod
+        app: simple-log
+    spec:
+      containers:
+        - name: log-agent
+          image: busybox:latest
+          command: ["sh","-c","echo taking logs; sleep 120"]
+  selector:
+    matchLabels:
+      name: daemon-pod
+      app: simple-log

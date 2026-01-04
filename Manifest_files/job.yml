@@ -1,0 +1,17 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: job-pod
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      name: demo-job-pod
+      labels:
+        app: batch-task
+    spec:
+      containers:
+      - name: batch-container
+        image: busybox:latest
+        command: ["sh","-c","echo Hello Dosto && sleep 10"]
+      restartPolicy: Never

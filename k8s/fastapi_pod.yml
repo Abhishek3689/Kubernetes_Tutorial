@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fastapi-pod
+  labels:
+    name: fastapi-pod
+    app: iris-demo-app
+
+spec:
+  containers:
+    - name: fastapi-pod
+      image: abhishek8988/iris-predict-fastapiapp:1.0
+      ports: 
+      - containerPort: 8000

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-deployment
+  labels:
+    name: streamlit-deployment
+    app: iris-demo-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: streamlit-pod
+      labels:
+        name: streamlit-pod
+        app: iris-demo-app
+    spec:
+      containers:
+        - name: streamlit-pod
+          image: abhishek8988/iris-predict-streamlitapp:1.0
+          ports:
+            - containerPort: 8501
+  selector:
+    matchLabels:
+      name: streamlit-pod
+      app: iris-demo-app

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata: 
+  name: cron-job-pod
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        metadata:
+          name: sample-cron-job
+        spec:
+          containers:
+          - name: backup
+            image: busybox:latest
+            command: ["sh","-c","echo taking DB Backup"]
+          restartPolicy: OnFailure
+
