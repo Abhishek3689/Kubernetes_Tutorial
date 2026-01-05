@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-demo
+  namespace: mysql-ns
+spec:
+  serviceName: mysql-service
+  replicas: 2
+  template:
+    metadata:
+      name: mysql-demo
+      namespace: mysql-ns
+      labels:
+        name: mysql-demo
+        app: mysql-app
+    spec:
+      containers:
+        - name: mysql-demo
+          image: mysql:8.0-debian
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - configMapRef:
+                name: mysql-config
+            - secretRef:
+                name: mysql-secret
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+  selector:
+    matchLabels:
+      name: mysql-demo
+      app: mysql-app
