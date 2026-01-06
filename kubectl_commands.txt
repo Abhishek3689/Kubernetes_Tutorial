@@ -1,0 +1,72 @@
+============================================================
+KUBERNETES NGINX + HPA COMMANDS – QUICK REFERENCE
+
+NGINX DEPLOYMENT & POD MANAGEMENT
+
+• kubectl get pods -n nginx
+→ Lists all pods running in the nginx namespace
+
+• kubectl get pods -n nginx -o wide
+→ Shows detailed pod information (IP, node name)
+
+• kubectl scale deployment nginx-deployment --replicas=3 -n nginx
+→ Manually scales the nginx deployment to 3 replicas
+
+• kubectl set image deployment/nginx-deployment nginx=nginx:1.27.3
+→ Updates nginx container image and performs rolling update
+
+• kubectl port-forward svc/nginx-service -n nginx 8080:80 --address=0.0.0.0
+→ Exposes nginx service locally on port 8080
+
+LOGS & DEBUGGING
+
+• kubectl logs pod/job-pod-f6sbp
+→ Displays logs from the specified pod (useful for debugging)
+
+METRICS SERVER (REQUIRED FOR HPA)
+
+• minikube addons enable metrics-server
+→ Enables metrics-server for CPU and memory metrics
+
+• kubectl get pods -n kube-system
+→ Verifies metrics-server and other system components
+
+• kubectl top pods
+→ Shows CPU and memory usage of pods in default namespace
+
+• kubectl top pods -n kube-system
+→ Shows CPU and memory usage of system pods
+
+HPA & RESOURCE OBSERVATION
+
+• kubectl get pods
+→ Lists pods in the current namespace
+
+• kubectl get svc
+→ Lists all services and their ClusterIP
+
+• kubectl get hpa
+→ Displays HPA configuration and scaling status
+
+• kubectl get all
+→ Shows all major Kubernetes resources at once
+
+LOAD GENERATION (HPA TESTING)
+
+• kubectl run -it load-generator --rm --image=busybox -- /bin/sh
+→ Starts a temporary BusyBox pod inside the cluster
+
+• while true; do wget -q -O- http://hpa-service
+; done
+→ Continuously sends requests to increase CPU load and trigger HPA
+
+REAL-TIME MONITORING
+
+• kubectl get hpa -w
+→ Watches HPA scaling decisions in real time
+
+• kubectl get pods -w
+→ Watches pods scaling up and down live
+
+============================================================
+END OF FILE
