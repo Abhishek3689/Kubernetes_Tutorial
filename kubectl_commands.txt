@@ -2,6 +2,22 @@
 KUBERNETES NGINX + HPA COMMANDS – QUICK REFERENCE
 
 NGINX DEPLOYMENT & POD MANAGEMENT
+APPLY KUBERNETES RESOURCES (YAML FILES)
+
+• kubectl apply -f pod.yml
+→ Creates or updates a Pod resource from YAML
+
+• kubectl apply -f deployment.yml
+→ Creates or updates a Deployment (manages replica pods)
+
+• kubectl apply -f service.yml
+→ Creates or updates a Service for pod networking
+
+• kubectl apply -f hpa.yml
+→ Creates or updates a Horizontal Pod Autoscaler
+
+• kubectl apply -f statefulset.yml
+→ Creates or updates a StatefulSet (stable pods + storage)
 
 • kubectl get pods -n nginx
 → Lists all pods running in the nginx namespace
